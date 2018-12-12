@@ -1,11 +1,12 @@
 var postsData = require('../../../data/posts-data.js')
-Page({
+var app=getApp();
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-    
+    isplayingMusic:false,
   },
 
   /**
@@ -24,13 +25,40 @@ Page({
     if (postsCollected) {
       var postsCollected = postsCollected[postId];
       this.setData({
-        collected: postsCollected
+        collected: postsCollected,
       })
     }else{
-      var postsCollected={}
-      postsCollected[postId]=false
-      wx.setStorageSync('postsCollected', postsCollected)
+      var postsCollected={};
+      postsCollected[postId]=false;
+      wx.setStorageSync('postsCollected', postsCollected);
     }
+    if (app.globalData.g_isPlayingMusic && app.globalData.g_currentMusicPostId===postId){
+      this.setData({
+        isplayingMusic: true,
+      })
+    }
+    this.setMusicMonitor();
+  },
+
+  //设置音乐切换页面的播放
+  setMusicMonitor:function(){
+    //监听音乐播放与暂停
+    var that = this;
+    wx.onBackgroundAudioPlay(function () {
+      that.setData({
+        isplayingMusic: true,
+      }),
+      app.globalData.g_isPlayingMusic=true;
+      app.globalData.g_currentMusicPostId=that.data.currentPostId;
+    }),
+
+    wx.onBackgroundAudioPause(function () {
+      that.setData({
+        isplayingMusic: false,
+      })
+      app.globalData.g_isPlayingMusic=false;
+      app.globalData.g_currentMusicPostId=null;
+    })
   },
 
   //点击是否收藏
@@ -77,7 +105,7 @@ Page({
       "分享到朋友圈",
       "分享到QQ",
       "分享到微博"
-    ]
+    ];
     wx.showActionSheet({
       itemList:itemList,
       itemColor:"#405f80",
@@ -89,8 +117,29 @@ Page({
         })
       }
     })
+  },
+  //播放音乐
+  onMusictap:function(){
+    var currentPostId = this.data.currentPostId;
+    var postData=postsData.postList[currentPostId];
+    var isplayingMusic=this.data.isplayingMusic;
+    //判断是否播放
+    if (isplayingMusic){
+      wx.pauseBackgroundAudio();
+      this.setData({
+        isplayingMusic:false,
+      })
+    }else{
+      wx.playBackgroundAudio({
+        dataUrl: postData.music.url,
+        title: postData.music.title,
+        coverImgUrl: postData.music.coverImg
+        })
+      this.setData({
+        isplayingMusic: true,
+      })
+    }
   }
-  
 
 
 })

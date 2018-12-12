@@ -1,12 +1,12 @@
 <import src="new-item/new-item-template.wxml"/>
 <view>
-  <swiper indicator-dots='true' autoplay='true' interval='2000'>
-    <swiper-item>
-      <image src="/images/wx.png"></image>
+  <swiper catchtap="onSwiperTap" indicator-dots='true' autoplay='true' interval='2000'>
+    <swiper-item >
+      <image  src="/images/wx.png" data-postId="3"></image>
     </swiper-item>
     
     <swiper-item>
-       <image src="/images/iqiyi.png"></image>
+       <image src="/images/iqiyi.png" data-postId="4"></image>
     </swiper-item>
     
     <swiper-item>

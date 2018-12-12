@@ -10,7 +10,12 @@ var post_content = [
     headImgSrc:"/images/post/crab.png",
     author:"张颜",
     collection: "96",
-    postId:0
+    postId:0,
+    music: {
+      url: "http://wx.u2u.pw/5/47/f.mp3",
+      title: "夜夜夜夜-齐秦",
+      coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001TEc6V0kjpVC.jpg?max_age=2592000"
+    }
   },
   {
     title: "比利·林恩的中场故事",
@@ -23,7 +28,12 @@ var post_content = [
     collection: 92,
     date: "Nov 20 2016",
     avatar: "/images/avatar/1.png",
-    postId:1
+    postId:1,
+    music: {
+      url: "http://wx.u2u.pw/5/47/z.mp3",
+      title: "鬼迷心窍-李宗盛",
+      coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000002xOmp62kqSic.jpg?max_age=2592000"
+    }
   },
   {
     //按住alt + shift + F 可以格式化代码样式
@@ -37,7 +47,12 @@ var post_content = [
     collection: 92,
     date: "Nov 12 2016",
     avatar: "/images/avatar/3.png",
-    postId: 2
+    postId: 2,
+    music: {
+      url: "http://wx.u2u.pw/5/47/f.mp3",
+      title: "女儿情-万晓利",
+      coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000004Wv5BO30pPc0.jpg?max_age=2592000"
+    }
   },
   {
     title: "微信·小程序开发工具安装指南",
@@ -50,7 +65,12 @@ var post_content = [
     collection: 92,
     date: "Nov 20 2016",
     avatar: "/images/avatar/5.png",
-    postId: 3
+    postId: 3,
+    music: {
+      url: "http://wx.u2u.pw/5/47/f.mp3",
+      title: "恋恋风尘-老狼",
+      coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001VaXQX1Z1Imq.jpg?max_age=2592000",
+    }
   },
   {
     title: "从视觉到触觉 这款VR手套能给你真实触感",
@@ -63,7 +83,12 @@ var post_content = [
     collection: 26,
     date: "Nov 20 2016",
     avatar: "/images/avatar/3.png",
-    postId: 4
+    postId: 4,
+    music: {
+      url: "http://wx.u2u.pw/5/47/f.mp3",
+      title: "沉默是金-张国荣",
+      coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000003at0mJ2YrR2H.jpg?max_age=2592000"
+    }
   },
   {
     title: "爱奇艺创维开展战略合作，合力布局开放娱乐生态",
@@ -76,7 +101,12 @@ var post_content = [
     collection: 26,
     date: "Nov 20 2016",
     avatar: "/images/avatar/5.png",  
-    postId: 5
+    postId: 5,
+    music: {
+      url: "http://wx.u2u.pw/5/47/f.mp3",
+      title: "朋友-谭咏麟",
+      coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000004eGsCN3SUheO.jpg?max_age=2592000"
+    }
   },
 
 ]
