@@ -33,10 +33,11 @@ Page({
     this.data.requestUrl=dataurl;
     util.http(dataurl, this.processDoubandata);
   },
-
+  //下拉刷新
   onScrollLower: function (event) {
     var nextUrl = this.data.requestUrl +"?start=" + this.data.totalCount + "&count=20";
     util.http(nextUrl, this.processDoubandata);
+    wx.showNavigationBarLoading();
   },
   //数据进行处理
   processDoubandata: function (moviesDouban) {
@@ -59,7 +60,9 @@ Page({
       movies.push(temp)
     }
     var totalMovies={}
-    
+
+    //实现动态加载数据
+    //如果要绑定新加载的数据，那么需要同旧数据合并在一起
     if(!this.data.isEmpty){
       totalMovies=this.data.movies.concat(movies)
     }else{
@@ -70,6 +73,7 @@ Page({
       movies: totalMovies
     })
     this.data.totalCount += 20;
+    wx.hideNavigationBarLoading();
   },
 
   onReady: function () {

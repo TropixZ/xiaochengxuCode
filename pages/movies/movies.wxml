@@ -1,6 +1,12 @@
 <import src="movie-list/movie-list-template.wxml" />
-
-<view class="container">
+<import src="../movie-grid/movie-grid-template.wxml"/>
+<view class='search'>
+  <icon type='search' size='13' color="#405f80" class='search-img'></icon>
+  <input type='text' placeholder='苍老师全集'  placeholder-class="placeholder"
+ bindfocus="onBindFocus" bindchange="onBindChange"/>
+  <image wx:if="{{searchPannelShow}}" class="cancelImage" src='/images/icon/xx.png' bindtap='onCancelImageTap'/>
+</view>
+<view class="container" wx:if="{{containerShow}}">
   <view class="movie-template">
      <template is="movieListTemplate" data="{{...inTheater}}"/>
   </view>
@@ -13,4 +19,8 @@
      <template is="movieListTemplate" data="{{...top250}}"/>
   </view>
  
+</view>
+
+<view class="search-pannel" wx:if="{{searchPannelShow}}">
+   <template is="movieListTemplate"/>
 </view>

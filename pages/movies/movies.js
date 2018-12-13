@@ -9,7 +9,9 @@ Page({
   data: {
     inTheaters:{},
     comingSoon:{},
-    top250:{}
+    top250:{},
+    containerShow:true,
+    searchPannelShow:false,
   },
 
   /**
@@ -24,7 +26,14 @@ Page({
     this.getMovieData(comingSoonUrl,"comingSoon","即将上映");
     this.getMovieData(top250Url,"top250","经典之作")
   },
-
+  //取消搜索
+  onCancelImageTap:function(){
+    this.setData({
+      containerShow: true,
+      searchPannelShow: false,
+      searchResult:{}
+    })
+  },
 
   //跳转到更多页面
   onMoreTap:function(event){
@@ -36,7 +45,7 @@ Page({
       complete: function(res) {},
     })
   },
-
+  
   getMovieData:function(url,type,categoryTitle){
     var that=this;
     wx.request({
@@ -50,6 +59,7 @@ Page({
       },
     })
   },
+  //把获取的数据进行处理
   processDoubandata: function (moviesDouban, type, categoryTitle){
     var movies=[];
     var num=0;
@@ -75,6 +85,14 @@ Page({
       categoryTitle: categoryTitle
     };
     this.setData(readydata)
+  },
+
+  //输入框聚集焦点
+  onBindFocus:function(event){
+      this.setData({
+        containerShow: false,
+        searchPannelShow: true,
+      })
   }
 
 })
