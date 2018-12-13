@@ -7,19 +7,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navigationBarTitleText:"",
+    navigationBarTitleText: "",
+    totalCount:0,
+    isEmpty:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var category=options.category;
-    this.data.navigationBarTitleText=category;
+    var category = options.category;
+    this.data.navigationBarTitleText = category;
     var dataurl;
-    switch(category){
+    switch (category) {
       case "正在热映":
-        dataurl = app.globalData.doubanBase +"/v2/movie/in_theaters";
+        dataurl = app.globalData.doubanBase + "/v2/movie/in_theaters";
         break;
       case "即将上映":
         dataurl = app.globalData.doubanBase + "/v2/movie/coming_soon";
@@ -28,10 +30,16 @@ Page({
         dataurl = app.globalData.doubanBase + "/v2/movie/top250";
         break;
     }
+    this.data.requestUrl=dataurl;
     util.http(dataurl, this.processDoubandata);
   },
+
+  onScrollLower: function (event) {
+    var nextUrl = this.data.requestUrl +"?start=" + this.data.totalCount + "&count=20";
+    util.http(nextUrl, this.processDoubandata);
+  },
   //数据进行处理
-  processDoubandata: function (moviesDouban){
+  processDoubandata: function (moviesDouban) {
 
     var movies = [];
     for (var idx in moviesDouban.subjects) {
@@ -50,15 +58,23 @@ Page({
       }
       movies.push(temp)
     }
+    var totalMovies={}
+    
+    if(!this.data.isEmpty){
+      totalMovies=this.data.movies.concat(movies)
+    }else{
+      totalMovies = movies;
+      this.data.isEmpty=false
+    }
     this.setData({
-      movies:movies
+      movies: totalMovies
     })
-    console.log(movies)
+    this.data.totalCount += 20;
   },
 
-  onReady:function(){
+  onReady: function () {
     wx.setNavigationBarTitle({
       title: this.data.navigationBarTitleText
     })
-  }
+  },
 })
