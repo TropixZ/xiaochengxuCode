@@ -34,6 +34,12 @@ Page({
       searchResult:{}
     })
   },
+  //输入搜索框触发的函数
+  onBindChange:function(event){
+    var text=event.detail.value;
+    var searchUrl = app.globalData.doubanBase + "/v2/movie/search?q="+text;
+    this.getMovieData(searchUrl,"searchResult","");
+  },
 
   //跳转到更多页面
   onMoreTap:function(event){

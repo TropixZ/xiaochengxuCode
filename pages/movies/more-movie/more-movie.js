@@ -41,7 +41,6 @@ Page({
   },
   //数据进行处理
   processDoubandata: function (moviesDouban) {
-
     var movies = [];
     for (var idx in moviesDouban.subjects) {
       var subject = moviesDouban.subjects[idx];
@@ -75,8 +74,9 @@ Page({
     this.data.totalCount += 20;
     wx.hideNavigationBarLoading();
   },
-
+  
   onReady: function () {
+    //渲染标题
     wx.setNavigationBarTitle({
       title: this.data.navigationBarTitleText
     })
