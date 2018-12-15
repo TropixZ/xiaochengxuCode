@@ -1,0 +1,10 @@
+/* pages/movies/movie-detail/movie-detail.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.movie-img{
+  width: 100%;
+  height: 320rpx;
+  filter:blur(15px);
+}

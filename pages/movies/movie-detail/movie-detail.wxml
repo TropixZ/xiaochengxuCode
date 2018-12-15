@@ -1,0 +1,3 @@
+<view class='container'>
+  <image src="{{movie. movieImg}}" class='movie-img' mode='aspectFill'></image>
+</view>

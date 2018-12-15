@@ -51,7 +51,7 @@ Page({
       complete: function(res) {},
     })
   },
-  
+  //获取到数据
   getMovieData:function(url,type,categoryTitle){
     var that=this;
     wx.request({
@@ -99,6 +99,13 @@ Page({
         containerShow: false,
         searchPannelShow: true,
       })
+  },
+  //页面跳转详细页
+  movieDetail:function(event){
+    var movieId = event.currentTarget.dataset.movieid;
+    wx.navigateTo({
+      url: 'movie-detail/movie-detail?id='+movieId,
+    })
   }
 
 })
