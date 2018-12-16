@@ -35,6 +35,8 @@ Page({
     }
     var movie={
       movieImg:data.images?data.images.large:"",
+      commentscount: data.comments_count,
+      wishcount: data.wish_count,
       country: data.countries[0],
       title:data.title,
       originaltitle: data.original_title,
@@ -47,6 +49,7 @@ Page({
       castsInfo: util.converToCastInfos(data.casts),
       score:data.rating.average,
     }
+    console.log(movie)
     this.setData({
       movie:movie
     })

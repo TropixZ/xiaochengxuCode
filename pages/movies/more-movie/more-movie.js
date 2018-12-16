@@ -37,6 +37,9 @@ Page({
   onScrollLower: function (event) {
     var nextUrl = this.data.requestUrl +"?start=" + this.data.totalCount + "&count=20";
     util.http(nextUrl, this.processDoubandata);
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.showNavigationBarLoading();
   },
   //数据进行处理
@@ -73,6 +76,7 @@ Page({
     })
     this.data.totalCount += 20;
     wx.hideNavigationBarLoading();
+    wx.hideLoading();
   },
   
   onReady: function () {
@@ -81,4 +85,10 @@ Page({
       title: this.data.navigationBarTitleText
     })
   },
+  movieDetail:function(event){
+    var movieId=event.currentTarget.dataset.movieid;
+    wx.navigateTo({
+      url: '../movie-detail/movie-detail?id=' + movieId,
+    })
+  }
 })

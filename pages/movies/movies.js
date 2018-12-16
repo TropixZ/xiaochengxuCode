@@ -37,7 +37,7 @@ Page({
   //输入搜索框触发的函数
   onBindChange:function(event){
     var text=event.detail.value;
-    var searchUrl = app.globalData.doubanBase + "/v2/movie/search?q="+text;
+    var searchUrl = "http://t.yushu.im/v2/movie/search?q="+text;
     this.getMovieData(searchUrl,"searchResult","");
   },
 
